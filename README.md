@@ -35,7 +35,7 @@ docker-compose up -d
 
 2. 等待所有服务启动完成（约1-2分钟），然后初始化数据库：
 ```bash
-docker exec -i cdc-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C -i /var/opt/mssql/init.sql
+docker exec -i cdc_example-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C -i /var/opt/mssql/init.sql
 ```
 
 資料行 __$operation 會記錄與變更相關聯的作業：1 = 刪除、2 = 插入、3 = 更新 (建立資料影像前)，以及 4 = 更新 (建立資料影像後)
@@ -90,7 +90,7 @@ curl -X POST http://127.0.0.1:8083/connectors -H "Content-Type: application/json
 4. 测试数据变更：
 ```bash
 # 连接到 SQL Server
-docker exec -it cdc-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C
+docker exec -it cdc_example-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C
 
 # 在 SQL 命令行中执行以下命令
 USE TestDB;
@@ -127,7 +127,7 @@ d - Delete（刪除）
 
 本项目提供了性能测试脚本来评估 CDC 对系统性能的影响。测试包括：
 
-1. 大量数据生成（默认10万条记录）
+1. 大量数据生成（默认1万条记录）
 2. 并发操作测试（插入、更新、删除）
 3. 性能指标收集（响应时间、平均操作时间）
 
@@ -136,7 +136,7 @@ d - Delete（刪除）
 1. 禁用 CDC 进行基准测试：
 ```bash
 # 连接到 SQL Server
-docker exec -it cdc-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C
+docker exec -it cdc_example-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Password123! -C
 
 # 禁用 CDC
 USE TestDB;

@@ -158,8 +158,8 @@ GO
 
 -- 修改 PerformanceTest 存儲過程
 CREATE PROCEDURE PerformanceTest
-    @InitialDataSize INT = 100000,    -- 初始數據量（預設10萬）
-    @OperationCount INT = 50000,       -- 測試操作數量
+    @InitialDataSize INT = 10000,    -- 初始數據量（預設1萬）
+    @OperationCount INT = 5000,       -- 測試操作數量
     @CleanupData BIT = 0               -- 是否清理數據，預設不清理
 AS
 BEGIN
